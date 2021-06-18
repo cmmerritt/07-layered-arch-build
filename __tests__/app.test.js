@@ -13,6 +13,8 @@ const testQuote = 'A theatre is the most important sort of house in the world, b
 
 const testQuoteAndAuthor = 'A theatre is the most important sort of house in the world, because that\'s where people are shown what they could be if they wanted, and what they\'d like to be if they dared to and what they really are - Tove Jansson';
 
+const testShotsQuote = 'You miss 100% of the shots you don\'t take - Wayne Gretzky - Michael Scott';
+
 describe('quote API munging', () => {
   it('munges quote', async () => {
     const expected = testQuoteAndAuthor;
@@ -35,12 +37,21 @@ describe('demo routes', () => {
   });
 
   it('gets a quote by id via GET', async () => {
-    const quote = await Quote.insert({ quote: 'You miss 100% of the shots you don\'t take - Wayne Gretzky - Michael Scott' });
+    const quote = await Quote.insert({ quote: testShotsQuote });
     return request(app)
       .get(`/api/v1/quotes/${quote.id}`)
       .then((res) => {
         expect(res.body).toEqual(quote);
       });
+  });
+
+  it('gets all quotes via GET', async () => {
+    const quote1 = await Quote.insert(testQuote);
+    const quote2 = await Quote.insert(testShotsQuote);
+
+    const res = await request(app).get('/api/v1/quotes');
+
+    expect(res.body).toEqual([quote1, quote2]);
   });
 });
 
