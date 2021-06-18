@@ -5,6 +5,7 @@ import setup from '../data/setup.js';
 import app from '../lib/app.js';
 import { formatQuote } from '../lib/utils/utils.js';
 import quoteData from '../data/quoteData.js';
+import Quote from '../models/Quote.js';
 
 dotenv.config();
 
@@ -31,6 +32,15 @@ describe('demo routes', () => {
       .send({ quote: testQuote });
     
     expect(res.body).toEqual({ id: '1', quote: testQuote });
+  });
+
+  it('gets a quote by id via GET', async () => {
+    const quote = await Quote.insert({ quote: 'You miss 100% of the shots you don\'t take - Wayne Gretzky - Michael Scott' });
+    return request(app)
+      .get(`/api/v1/quotes/${quote.id}`)
+      .then((res) => {
+        expect(res.body).toEqual(quote);
+      });
   });
 });
 
