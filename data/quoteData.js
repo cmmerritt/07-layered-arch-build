@@ -1,11 +1,11 @@
 export default {
-  'id':22008,
+  'id':1238957,
   'language_code':'en',
-  'content':'People really need help but may attack you if you help them. Help people anyway!',
-  'url':'https://quotepark.com/quotes/22008-matka-tereza-people-really-need-help-but-may-attack-you-if-you/',
+  'content':'A theatre is the most important sort of house in the world, because that\'s where people are shown what they could be if they wanted, and what they\'d like to be if they dared to and what they really are',
+  'url':'https://quotepark.com/quotes/1238957-tove-jansson-a-theatre-is-the-most-important-sort-of-house-in-t/',
   'originator':{
-    'id':164750,
-    'name':'Matka Tereza',
-    'url':'https://quotepark.com/authors/matka-tereza/'
+    'id':129266,
+    'name':'Tove Jansson',
+    'url':'https://quotepark.com/authors/tove-jansson/'
   },
 };
