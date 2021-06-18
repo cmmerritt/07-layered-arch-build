@@ -63,5 +63,12 @@ describe('demo routes', () => {
     const res = await request(app).put(`/api/v1/quotes/${quote1.id}`).send(updatedQuote);
     expect(res.body).toEqual({ 'id': '1', ...updatedQuote });
   });
+
+  it('deletes quote by id', async () => {
+    const quote1 = await Quote.insert({ quote: testShotsQuote });
+    
+    const res = await request(app).delete(`/api/v1/quotes/${quote1.id}`);
+    expect(res.body).toEqual(quote1);
+  });
 });
 
