@@ -53,5 +53,13 @@ describe('demo routes', () => {
 
     expect(res.body).toEqual([quote1, quote2]);
   });
+
+  it('updates a quote via PUT', async () => {
+    const quote1 = await Quote.insert({ quote: testQuote });
+    const updatedQuote = { quote: 'This is not a quote - Nobody' };
+
+    const res = await (await request(app).put(`/api/v1/quotes/${quote1.id}`)).setEncoding(updatedQuote);
+    expect(res.body).toEqual({ 'id': '1', ...updatedQuote });
+  });
 });
 
