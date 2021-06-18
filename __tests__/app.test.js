@@ -46,8 +46,8 @@ describe('demo routes', () => {
   });
 
   it('gets all quotes via GET', async () => {
-    const quote1 = await Quote.insert(testQuote);
-    const quote2 = await Quote.insert(testShotsQuote);
+    const quote1 = await Quote.insert({ quote: testQuote });
+    const quote2 = await Quote.insert({ quote: testShotsQuote });
 
     const res = await request(app).get('/api/v1/quotes');
 

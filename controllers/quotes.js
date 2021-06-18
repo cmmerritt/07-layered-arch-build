@@ -11,6 +11,16 @@ export default Router()
       next(err);
     }
   })
+
+  .get('/', async (req, res, next) => {
+    try {
+      const quotes = await Quote.findAll();
+      res.send(quotes);
+    } catch (err) {
+      next(err);
+    }
+  })
+
   .get('/:id', async (req, res, next) => {
     try {
       const quote = await Quote.findById(req.params.id);
@@ -19,4 +29,6 @@ export default Router()
       next(err);
     }
   });
+
+
 

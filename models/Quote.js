@@ -11,8 +11,7 @@ export default class Quote {
 
   static async insert ({ quote }) {
     const { rows } = await pool.query(
-      'INSERT INTO quotes (quote) VALUES ($1) RETURNING *', [quote]
-    );
+      'INSERT INTO quotes (quote) VALUES ($1) RETURNING *', [quote]);
 
     return new Quote(rows[0]);
   }
@@ -21,5 +20,11 @@ export default class Quote {
     const { rows } = await pool.query('SELECT * FROM quotes WHERE id=$1', [id]);
     
     return new Quote(rows[0]);
+  }
+
+  static async findAll() {
+    const { rows } = await pool.query('SELECT * FROM quotes');
+    
+    return rows.map(row => new Quote(row));
   }
 }
