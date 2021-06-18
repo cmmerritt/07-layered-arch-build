@@ -37,6 +37,15 @@ export default Router()
     } catch (err) {
       next(err);
     }
+  })
+
+  .delete('/:id', async (req, res, next) => {
+    try {
+      const quote = await Quote.delete(req.params.id);
+      res.send(quote);
+    } catch (err) {
+      next(err);
+    }
   });
 
 
