@@ -15,6 +15,8 @@ const testQuoteAndAuthor = 'A theatre is the most important sort of house in the
 
 const testShotsQuote = 'You miss 100% of the shots you don\'t take - Wayne Gretzky - Michael Scott';
 
+const notAQuote = 'This is not a quote - Nobody';
+
 describe('quote API munging', () => {
   it('munges quote', async () => {
     const expected = testQuoteAndAuthor;
@@ -56,9 +58,9 @@ describe('demo routes', () => {
 
   it('updates a quote via PUT', async () => {
     const quote1 = await Quote.insert({ quote: testQuote });
-    const updatedQuote = { quote: 'This is not a quote - Nobody' };
+    const updatedQuote = { quote: notAQuote };
 
-    const res = await (await request(app).put(`/api/v1/quotes/${quote1.id}`)).setEncoding(updatedQuote);
+    const res = await request(app).put(`/api/v1/quotes/${quote1.id}`).send(updatedQuote);
     expect(res.body).toEqual({ 'id': '1', ...updatedQuote });
   });
 });

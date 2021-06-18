@@ -27,4 +27,10 @@ export default class Quote {
     
     return rows.map(row => new Quote(row));
   }
+
+  static async update(quote, id) {
+    const { rows } = await pool.query('UPDATE quotes SET quote = $1 WHERE id = $2 RETURNING *', [quote.quote, id]);
+    
+    return new Quote(rows[0]);
+  }
 }

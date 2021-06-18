@@ -28,6 +28,15 @@ export default Router()
     } catch (err) {
       next(err);
     }
+  })
+
+  .put('/:id', async (req, res, next) => {
+    try {
+      const quote = await Quote.update(req.body, req.params.id);
+      res.send(quote);
+    } catch (err) {
+      next(err);
+    }
   });
 
 
