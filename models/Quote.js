@@ -16,4 +16,10 @@ export default class Quote {
 
     return new Quote(rows[0]);
   }
+
+  static async findById(id) {
+    const { rows } = await pool.query('SELECT * FROM quotes WHERE id=$1', [id]);
+    
+    return new Quote(rows[0]);
+  }
 }
